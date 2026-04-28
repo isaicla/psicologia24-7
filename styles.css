@@ -574,7 +574,8 @@ img {
 }
 
 .about-img-placeholder {
-    width: 300px;
+    width: 100%;              /* ✅ Ocupa el 100% del contenedor padre */
+    max-width: 300px;          /* ✅ Pero no más de 300px */
     height: 350px;
     background: linear-gradient(135deg, var(--secondary-light), var(--secondary));
     border-radius: var(--radius-lg);
