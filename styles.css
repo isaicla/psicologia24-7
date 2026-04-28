@@ -34,6 +34,9 @@ html {
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     font-family: var(--font-body);
     background-color: var(--background);
     color: var(--text-primary);
@@ -42,6 +45,8 @@ body {
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
@@ -312,10 +317,16 @@ img {
 }
 
 .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
     margin-top: 3rem;
+}
+
+.features-grid .feature-card {
+    flex: 1 1 300px;
+    max-width: 350px;
 }
 
 .feature-card {
@@ -356,10 +367,16 @@ img {
 }
 
 .pain-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
     margin-top: 3rem;
+}
+
+.pain-grid .pain-card {
+    flex: 1 1 300px;
+    max-width: 350px;
 }
 
 .pain-card {
@@ -416,11 +433,17 @@ img {
 }
 
 .pricing-cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
     max-width: 900px;
     margin: 3rem auto 0;
+}
+
+.pricing-cards .pricing-card {
+    flex: 1 1 350px;
+    max-width: 450px;
 }
 
 .pricing-card {
@@ -528,10 +551,21 @@ img {
 }
 
 .about-content {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    display: flex;
+    flex-wrap: wrap;
     gap: 4rem;
     align-items: center;
+    justify-content: center;
+}
+
+.about-content .about-image {
+    flex: 1 1 300px;
+    max-width: 400px;
+}
+
+.about-content .about-text {
+    flex: 1 1 400px;
+    max-width: 600px;
 }
 
 .about-image {
@@ -834,10 +868,15 @@ img {
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+    display: flex;
+    flex-wrap: wrap;
     gap: 3rem;
     margin-bottom: 3rem;
+    justify-content: space-between;
+}
+
+.footer-content > div {
+    flex: 1 1 200px;
 }
 
 .footer-brand .logo {
@@ -931,11 +970,6 @@ img {
 
 /* Responsive */
 @media (max-width: 1024px) {
-    .features-grid,
-    .pain-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .pricing-card.featured {
         transform: none;
     }
@@ -944,17 +978,8 @@ img {
         transform: translateY(-5px);
     }
 
-    .about-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
     .about-image {
         order: -1;
-    }
-
-    .footer-content {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -983,10 +1008,15 @@ img {
         opacity: 1;
     }
 
-    .features-grid,
-    .pain-grid,
-    .pricing-cards {
-        grid-template-columns: 1fr;
+    .features-grid .feature-card,
+    .pain-grid .pain-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .pricing-cards .pricing-card {
+        flex: 1 1 100%;
+        max-width: 100%;
     }
 
     .hero-title {
@@ -1001,9 +1031,8 @@ img {
         font-size: 1.75rem;
     }
 
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+    .footer-content > div {
+        flex: 1 1 100%;
     }
 }
 
