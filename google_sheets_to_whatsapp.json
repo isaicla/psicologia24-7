@@ -1,0 +1,53 @@
+{
+  "name": "Google Sheets to WhatsApp Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "triggerOn": "newRow",
+        "spreadsheetId": "ID_DE_TU_HOJA",
+        "sheetName": "NOMBRE_DE_PESTAÑA",
+        "pollInterval": 60
+      },
+      "id": "google-trigger",
+      "name": "Google Sheets Trigger",
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {"name": "toPhone", "value": "={{$json[\"phone\"]}}"},
+            {"name": "msgContent", "value": "={{$json[\"message\"]}}"}
+          ]
+        }
+      },
+      "id": "format-data",
+      "name": "Format Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "operation": "sendMessage",
+        "to": "={{$json[\"toPhone\"]}}",
+        "messageType": "text",
+        "message": "={{$json[\"msgContent\"]}}",
+        "phoneNumberId": "ID_DE_TU_NUMERO_WHATSAPP"
+      },
+      "id": "whatsapp-send",
+      "name": "Send WhatsApp Message",
+      "type": "n8n-nodes-base.whatsAppBusinessCloudApi",
+      "typeVersion": 1,
+      "position": [650, 300]
+    }
+  ],
+  "connections": {
+    "Google Sheets Trigger": {"main": [[{"node": "Format Data", "type": "main", "index": 0}]]},
+    "Format Data": {"main": [[{"node": "Send WhatsApp Message", "type": "main", "index": 0}]]}
+  },
+  "active": false,
+  "settings": {"executionOrder": "v1"}
+}
